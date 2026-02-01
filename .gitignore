@@ -10,3 +10,4 @@ __pycache__/
 *.synctex.gz
 *.toc
 *.bbl
+*.blg

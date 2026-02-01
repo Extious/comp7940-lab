@@ -20,9 +20,9 @@
 
 \title{COMP7940 Cloud Computing\\Lab 1: Python Basic and GitHub Setup}
 \author{
-  Name: ZHAO Zhan\underline{\hspace{5cm}}\\
-  Student ID: 25482351\underline{\hspace{5cm}}\\
-  GitHub: @Extious\underline{\hspace{5cm}}
+  Name: ZHAO Zhan \\
+  Student ID: 25482351 \\
+  GitHub: @Extious
 }
 \date{\today}
 
@@ -34,11 +34,7 @@
 git clone git@github.com:Extious/comp7940-lab.git
 \end{lstlisting}
 
-\noindent \textit{Note: Replace \texttt{<path>} and \texttt{<username>} with your actual values.}
-
 \section*{2. Screenshot of GitHub Repository with \texttt{hello.py}}
-\noindent Save your screenshot as \texttt{lab1/github\_hello.png} (recommended), then compile this PDF.
-
 \medskip
 \IfFileExists{lab1/github_hello.png}{
   \begin{center}
@@ -54,11 +50,11 @@ git clone git@github.com:Extious/comp7940-lab.git
 
 \section*{3. Why SSH Keys Are More Secure Than Passwords}
 \begin{itemize}
-  \item SSH uses public-key (asymmetric) cryptography: only the public key is uploaded; the private key stays on your computer.
-  \item The private key is never sent over the network, which reduces the risk of credential interception.
-  \item SSH keys can be protected with a local passphrase; even if the key file is copied, it is harder to use without the passphrase.
-  \item Keys are resistant to password reuse and common phishing attacks because there is no typed password to steal.
-  \item Keys can be revoked/rotated per device without changing other devices' access.
+  \item SSH uses public-key (asymmetric) cryptography: only the public key is uploaded; the private key stays on your computer \cite{rfc4251,rfc4252,github-about-ssh}.
+  \item The private key is never sent over the network, which reduces the risk of credential interception \cite{rfc4252}.
+  \item SSH keys can be protected with a local passphrase; even if the key file is copied, it is harder to use without the passphrase \cite{openssh-ssh-keygen}.
+  \item Keys are resistant to password reuse and common phishing attacks because there is no typed password to steal \cite{github-about-ssh}.
+  \item Keys can be revoked/rotated per device without changing other devices' access \cite{github-add-ssh-key}.
 \end{itemize}
 
 \section*{4. Python Code (Exercises 1--3)}
@@ -67,6 +63,9 @@ git clone git@github.com:Extious/comp7940-lab.git
 \lstinputlisting[language=Python]{lab1/exercises.py}
 
 \subsection*{\texttt{hello.py}}
-\lstinputlisting[language=Python]{hello.py}
+\lstinputlisting[language=Python]{lab1/hello.py}
+
+\bibliographystyle{plain}
+\bibliography{lab1_writeup}
 
 \end{document}
