@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  columns=fullflexible,
+  frame=single,
+  rulecolor=\color{black!20},
+  keywordstyle=\color{blue!60!black},
+  commentstyle=\color{black!60},
+  stringstyle=\color{green!40!black},
+  showstringspaces=false
+}
+
+\title{COMP7940 Cloud Computing\\Lab 1: Python Basic and GitHub Setup}
+\author{
+  Name: \underline{\hspace{5cm}}\\
+  Student ID: \underline{\hspace{5cm}}\\
+  GitHub: \underline{\hspace{5cm}}
+}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{1. Clone Command}
+\begin{lstlisting}[language=bash]
+mkdir -p <path>/hkbu
+cd <path>/hkbu
+git clone git@github.com:<username>/comp7940-lab.git
+\end{lstlisting}
+
+\noindent \textit{Note: Replace \texttt{<path>} and \texttt{<username>} with your actual values.}
+
+\section*{2. Screenshot of GitHub Repository with \texttt{hello.py}}
+\noindent Save your screenshot as \texttt{lab1/github\_hello.png} (recommended), then compile this PDF.
+
+\medskip
+\IfFileExists{lab1/github_hello.png}{
+  \begin{center}
+    \includegraphics[width=0.95\linewidth]{lab1/github_hello.png}
+  \end{center}
+}{
+  \begin{center}
+    \fbox{\parbox{0.95\linewidth}{
+      Screenshot missing. Please add \texttt{lab1/github\_hello.png} and recompile.
+    }}
+  \end{center}
+}
+
+\section*{3. Why SSH Keys Are More Secure Than Passwords}
+\begin{itemize}
+  \item SSH uses public-key (asymmetric) cryptography: only the public key is uploaded; the private key stays on your computer.
+  \item The private key is never sent over the network, which reduces the risk of credential interception.
+  \item SSH keys can be protected with a local passphrase; even if the key file is copied, it is harder to use without the passphrase.
+  \item Keys are resistant to password reuse and common phishing attacks because there is no typed password to steal.
+  \item Keys can be revoked/rotated per device without changing other devices' access.
+\end{itemize}
+
+\section*{4. Python Code (Exercises 1--3)}
+
+\subsection*{Exercise 1--3 Solution File}
+\lstinputlisting[language=Python]{lab1/exercises.py}
+
+\subsection*{\texttt{hello.py}}
+\lstinputlisting[language=Python]{hello.py}
+
+\end{document}
