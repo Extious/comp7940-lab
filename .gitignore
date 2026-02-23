@@ -11,3 +11,7 @@ __pycache__/
 *.toc
 *.bbl
 *.blg
+.venv/
+.DS_Store
+lab2/config.ini
+lab3/config.ini
