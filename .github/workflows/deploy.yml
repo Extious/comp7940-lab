@@ -32,11 +32,11 @@ jobs:
           # -o StrictHostKeyChecking=no skips the host-key verification prompt on first connect
           ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           # Navigate to the project directory on the EC2 instance
-          cd ~/comp7940-lab
+          cd ~/comp7940-lab/lab5
           # Pull the latest code from the main branch
           git pull origin main
           # Kill the old chatbot process (|| true ensures no error if the process is not found)
-          pkill -f "python lab5/chatbot.py" || true
+          pkill -f "python chatbot.py" || true
           # Start the chatbot in the background using the venv Python; logs go to app.log
-          nohup ~/chatbot_comp7940/venv/bin/python lab5/chatbot.py > app.log 2>&1 &
+          nohup ~/comp7940-lab/venv/bin/python chatbot.py > app.log 2>&1 &
           EOF
