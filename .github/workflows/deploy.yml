@@ -1,0 +1,42 @@
+# Workflow name, displayed on the GitHub Actions page
+name: AWS EC2 Deploy
+
+# Trigger: run this workflow automatically when code is pushed to the main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    # Use the latest GitHub-hosted Ubuntu runner as the execution environment
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code onto the runner
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Load the SSH private key into ssh-agent for secure remote access
+      # The private key is stored in the repo's Secrets (Settings > Secrets > EC2_KEY)
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.EC2_KEY }}
+
+      # Step 3: SSH into the EC2 instance and run the deployment commands
+      # Requires EC2_USER (username) and EC2_HOST (host address) configured in Secrets
+      - name: Deploy application
+        run: |
+          # -o StrictHostKeyChecking=no skips the host-key verification prompt on first connect
+          ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          # Navigate to the project directory on the EC2 instance
+          cd ~/chatbot_comp7940
+          # Pull the latest code from the main branch
+          git pull origin main
+          # Kill the old chatbot process (|| true ensures no error if the process is not found)
+          pkill -f "python chatbot.py" || true
+          # Start the chatbot in the background using the venv Python; logs go to app.log
+          nohup ~/chatbot_comp7940/venv/bin/python chatbot.py > app.log 2>&1 &
+          EOF
