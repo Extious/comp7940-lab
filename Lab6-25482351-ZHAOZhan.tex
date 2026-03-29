@@ -3,6 +3,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{xurl}
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage{cite}
@@ -97,6 +98,8 @@ docker save -o lab6-chatbot.tar lab6-chatbot:latest
 \end{lstlisting}
 
 The resulting \texttt{lab6-chatbot.tar} file is submitted alongside this report (equivalent to the lab's \texttt{docker save -o chatbot.tar chatbot} after building/tagging the image as \texttt{chatbot}).
+The same archive is also available in the course repository at:
+\url{https://github.com/Extious/comp7940-lab/blob/main/lab6/lab6-chatbot.tar}.
 On another machine, the image can be restored with \texttt{docker load -i lab6-chatbot.tar}, then run with the same bind mount for \texttt{config.ini} as in Section~1.
 
 \bibliographystyle{plain}
